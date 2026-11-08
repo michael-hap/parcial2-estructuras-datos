@@ -16,6 +16,10 @@ public class NodoArbol {
         return codigo;
     }
 
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
     public NodoArbol getIzquierdo() {
         return izquierdo;
     }

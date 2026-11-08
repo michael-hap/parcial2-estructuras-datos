@@ -11,7 +11,7 @@ public class ArbolBinarioBusqueda {
         raiz = null;
     }
 
-    // INSERTAR
+    // INSERTAR UN CÓDIGO
 
     public void insertar(int codigo) {
         raiz = insertarRecursivo(raiz, codigo);
@@ -27,13 +27,14 @@ public class ArbolBinarioBusqueda {
             actual.setIzquierdo(
                     insertarRecursivo(actual.getIzquierdo(), codigo)
             );
+
         } else if (codigo > actual.getCodigo()) {
             actual.setDerecho(
                     insertarRecursivo(actual.getDerecho(), codigo)
             );
         }
 
-        // Si el código es igual, no se inserta porque debe ser único.
+        // Si el código ya existe, no se vuelve a insertar.
         return actual;
     }
 
@@ -51,7 +52,9 @@ public class ArbolBinarioBusqueda {
         }
 
         recorridoInordenRecursivo(actual.getIzquierdo());
+
         System.out.print(actual.getCodigo() + " ");
+
         recorridoInordenRecursivo(actual.getDerecho());
     }
 
@@ -69,7 +72,9 @@ public class ArbolBinarioBusqueda {
         }
 
         System.out.print(actual.getCodigo() + " ");
+
         recorridoPreordenRecursivo(actual.getIzquierdo());
+
         recorridoPreordenRecursivo(actual.getDerecho());
     }
 
@@ -87,7 +92,9 @@ public class ArbolBinarioBusqueda {
         }
 
         recorridoPostordenRecursivo(actual.getIzquierdo());
+
         recorridoPostordenRecursivo(actual.getDerecho());
+
         System.out.print(actual.getCodigo() + " ");
     }
 
@@ -100,6 +107,7 @@ public class ArbolBinarioBusqueda {
         }
 
         Queue<NodoArbol> cola = new LinkedList<>();
+
         cola.add(raiz);
 
         while (!cola.isEmpty()) {
@@ -120,7 +128,7 @@ public class ArbolBinarioBusqueda {
         System.out.println();
     }
 
-    // CONTAR CÓDIGOS DENTRO DE UN RANGO INCLUSIVO
+    // CONTAR CÓDIGOS DENTRO DE UN RANGO
 
     public int contarEquiposEnRango(int inferior, int superior) {
 
@@ -142,15 +150,17 @@ public class ArbolBinarioBusqueda {
 
         int codigo = actual.getCodigo();
 
+        // Si es menor que el límite inferior,
+        // no es necesario revisar su subárbol izquierdo.
         if (codigo < inferior) {
-            // Todo lo que está a la izquierda también es menor.
             return contarEquiposEnRangoRecursivo(
                     actual.getDerecho(), inferior, superior
             );
         }
 
+        // Si es mayor que el límite superior,
+        // no es necesario revisar su subárbol derecho.
         if (codigo > superior) {
-            // Todo lo que está a la derecha también es mayor.
             return contarEquiposEnRangoRecursivo(
                     actual.getIzquierdo(), inferior, superior
             );
@@ -166,7 +176,7 @@ public class ArbolBinarioBusqueda {
         );
     }
 
-    // ELIMINAR UN NODO
+    // ELIMINAR UN CÓDIGO
 
     public void eliminar(int codigo) {
         raiz = eliminarRecursivo(raiz, codigo);
@@ -193,77 +203,35 @@ public class ArbolBinarioBusqueda {
 
         } else {
 
-            // Caso 1: el nodo no tiene hijos.
-            if (actual.getIzquierdo() == null
-                    && actual.getDerecho() == null) {
-                return null;
-            }
-
-            // Caso 2: el nodo solo tiene hijo derecho.
+            // Caso 1 y 2: el nodo no tiene hijo izquierdo
+            // o solamente tiene hijo derecho.
             if (actual.getIzquierdo() == null) {
                 return actual.getDerecho();
             }
 
-            // Caso 2: el nodo solo tiene hijo izquierdo.
+            // Caso 2: solamente tiene hijo izquierdo.
             if (actual.getDerecho() == null) {
                 return actual.getIzquierdo();
             }
 
-            // Caso 3: el nodo tiene dos hijos.
-            // Se utiliza el sucesor inorden.
+            // Caso 3: tiene dos hijos.
+            // Se busca el sucesor inorden.
             NodoArbol sucesor = encontrarMinimo(actual.getDerecho());
 
-            actual = new NodoArbol(sucesor.getCodigo());
+            actual.setCodigo(sucesor.getCodigo());
 
-            actual.setIzquierdo(
-                    eliminarRecursivoPorSucesor(
-                            raiz, sucesor.getCodigo()
-                    )
-            );
-        }
-
-        return actual;
-    }
-
-    // Eliminar el sucesor de su posición original.
-    private NodoArbol eliminarRecursivoPorSucesor(
-            NodoArbol actual, int codigo) {
-
-        if (actual == null) {
-            return null;
-        }
-
-        if (codigo < actual.getCodigo()) {
-
-            actual.setIzquierdo(
-                    eliminarRecursivoPorSucesor(
-                            actual.getIzquierdo(), codigo
-                    )
-            );
-
-        } else if (codigo > actual.getCodigo()) {
-
+            // Se elimina el sucesor de su posición original.
             actual.setDerecho(
-                    eliminarRecursivoPorSucesor(
-                            actual.getDerecho(), codigo
+                    eliminarRecursivo(
+                            actual.getDerecho(), sucesor.getCodigo()
                     )
             );
-
-        } else {
-
-            if (actual.getIzquierdo() == null) {
-                return actual.getDerecho();
-            }
-
-            if (actual.getDerecho() == null) {
-                return actual.getIzquierdo();
-            }
         }
 
         return actual;
     }
 
-    // ENCONTRAR EL MENOR NODO DE UN SUBÁRBOL
+    // ENCONTRAR EL MENOR CÓDIGO DE UN SUBÁRBOL
 
     private NodoArbol encontrarMinimo(NodoArbol actual) {
 
@@ -273,6 +241,8 @@ public class ArbolBinarioBusqueda {
 
         return encontrarMinimo(actual.getIzquierdo());
     }
+
+    // OBTENER LA RAÍZ
 
     public NodoArbol getRaiz() {
         return raiz;
