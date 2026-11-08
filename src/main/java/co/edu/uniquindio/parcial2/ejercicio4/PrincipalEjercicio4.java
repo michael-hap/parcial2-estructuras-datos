@@ -19,7 +19,7 @@ public class PrincipalEjercicio4 {
             arbol.insertar(codigo);
         }
 
-        System.out.println("===== ARBOL BINARIO DE BUSQUEDA =====");
+        System.out.println("ARBOL BINARIO DE BUSQUEDA");
 
         // MOSTRAR ARBOL ORIGINAL
 
@@ -49,7 +49,7 @@ public class PrincipalEjercicio4 {
                 inferior, superior
         );
 
-        System.out.println("\n===== CONTEO POR RANGO =====");
+        System.out.println("\nCONTEO POR RANGO");
 
         System.out.println("Limite inferior: " + inferior);
         System.out.println("Limite superior: " + superior);
@@ -57,7 +57,7 @@ public class PrincipalEjercicio4 {
 
         // ELIMINAR EL CODIGO 41
 
-        System.out.println("\n===== ELIMINACION DEL CODIGO 41 =====");
+        System.out.println("\nELIMINACION DEL CODIGO 41");
 
         arbol.eliminar(41);
 
