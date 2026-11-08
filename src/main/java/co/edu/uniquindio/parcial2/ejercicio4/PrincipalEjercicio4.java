@@ -8,18 +8,25 @@ public class PrincipalEjercicio4 {
 
         ArbolBinarioBusqueda arbol = new ArbolBinarioBusqueda();
 
-        // Códigos proporcionados en el ejercicio.
         int[] codigos = {
                 41, 20, 52, 16, 6, 13, 12,
                 60, 22, 47, 50, 60, 43, 44
         };
 
-        // Insertar los códigos.
+        // INSERTAR LOS CODIGOS
+
         for (int codigo : codigos) {
             arbol.insertar(codigo);
         }
 
         System.out.println("===== ARBOL BINARIO DE BUSQUEDA =====");
+
+        // MOSTRAR ARBOL ORIGINAL
+
+        System.out.println("\nARBOL ORIGINAL:");
+        arbol.mostrarArbol();
+
+        // RECORRIDOS
 
         System.out.println("\nRECORRIDO INORDEN:");
         arbol.recorridoInorden();
@@ -33,7 +40,8 @@ public class PrincipalEjercicio4 {
         System.out.println("\nRECORRIDO POR NIVELES:");
         arbol.recorridoPorNiveles();
 
-        // Buscar códigos dentro de un rango.
+        // CONTEO POR RANGO
+
         int inferior = 12;
         int superior = 50;
 
@@ -47,20 +55,22 @@ public class PrincipalEjercicio4 {
         System.out.println("Limite superior: " + superior);
         System.out.println("Cantidad encontrada: " + cantidad);
 
-        // Eliminar el código 41.
-        System.out.println("\n===== ELIMINACION DEL CODIGO 41 =====");
+        // ELIMINAR EL CODIGO 41
 
-        System.out.println("\nArbol antes de eliminar:");
-        arbol.recorridoPorNiveles();
+        System.out.println("\n===== ELIMINACION DEL CODIGO 41 =====");
 
         arbol.eliminar(41);
 
-        System.out.println("\nArbol despues de eliminar:");
-        arbol.recorridoPorNiveles();
+        // MOSTRAR ARBOL DESPUES DE ELIMINAR
 
-        System.out.println("\nRecorrido inorden despues de eliminar:");
+        System.out.println("\nARBOL DESPUES DE ELIMINAR:");
+        arbol.mostrarArbol();
+
+        System.out.println("\nRECORRIDO INORDEN DESPUES DE ELIMINAR:");
         arbol.recorridoInorden();
 
-        System.out.println("\nSe utilizo el sucesor inorden para reemplazar el codigo 41.");
+        System.out.println(
+                "\nSe utilizo el sucesor inorden para reemplazar el codigo 41."
+        );
     }
 }
