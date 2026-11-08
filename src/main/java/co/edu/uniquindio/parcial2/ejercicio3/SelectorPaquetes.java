@@ -33,12 +33,16 @@ public class SelectorPaquetes {
         Cola<Paquete> pendientesUrgentes = new Cola<>();
         Cola<Paquete> pendientesNormales = new Cola<>();
 
+        System.out.println("\n--- Procesando paquetes urgentes ---");
+
         procesarPaquetes(
                 urgentes,
                 urgentes.tamanio(),
                 seleccionados,
                 pendientesUrgentes
         );
+
+        System.out.println("\n--- Procesando paquetes normales ---");
 
         procesarPaquetes(
                 normales,
@@ -51,7 +55,7 @@ public class SelectorPaquetes {
 
         reconstruirPendientes(
                 pendientes,
-                pendientes.tamanio(),
+                cantidad,
                 pendientesUrgentes,
                 pendientesNormales,
                 resultadoPendientes
@@ -80,6 +84,7 @@ public class SelectorPaquetes {
         }
 
         Paquete paquete = original.desencolar();
+
         respaldo.encolar(paquete);
 
         if (paquete.getTipo() == TipoEntrega.URGENTE) {
@@ -89,7 +94,11 @@ public class SelectorPaquetes {
         }
 
         clasificarPaquetes(
-                original, cantidad - 1, urgentes, normales, respaldo
+                original,
+                cantidad - 1,
+                urgentes,
+                normales,
+                respaldo
         );
     }
 
@@ -104,7 +113,11 @@ public class SelectorPaquetes {
 
         original.encolar(respaldo.desencolar());
 
-        restaurarCola(respaldo, cantidad - 1, original);
+        restaurarCola(
+                respaldo,
+                cantidad - 1,
+                original
+        );
     }
 
     private void procesarPaquetes(
@@ -136,7 +149,8 @@ public class SelectorPaquetes {
 
             System.out.println(
                     paquete.getCodigo()
-                            + " queda pendiente. No hay capacidad suficiente."
+                            + " queda pendiente. Peso: "
+                            + paquete.getPeso() + " kg"
             );
         }
 
