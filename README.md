@@ -185,11 +185,11 @@ Según las indicaciones del parcial:
 
 El desarrollo se organizó en un repositorio compartido con ramas de trabajo:
 
-- `ejercicios-1-2-5`: ejercicios 1 y 2 (Java) y desarrollo manual del ejercicio 5.
-- `ejercicios-3-4`: ejercicios 3 y 4 (Java).
+- `ejercicios-1-2-5`: ejercicios 1 y 2 y desarrollo manual del ejercicio 5.
+- `ejercicios-3-4`: ejercicios 3 y 4.
 - `main`: integración de las implementaciones revisadas.
 
-Las contribuciones individuales pueden consultarse en el historial de commits y en las ramas del repositorio. Los nombres completos y las identificaciones de los integrantes se registran en el documento oficial de entrega.
+Las contribuciones individuales pueden consultarse en el historial de commits y en las ramas del repositorio. Los nombres completos y las identificaciones de los integrantes se registraron en el documento oficial de entrega.
 
 ---
 
