@@ -1,8 +1,5 @@
 package co.edu.uniquindio.parcial2.estructuras;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
 public class ArbolBinarioBusqueda {
 
     private NodoArbol raiz;
@@ -68,23 +65,24 @@ public class ArbolBinarioBusqueda {
         System.out.print(actual.getCodigo() + " ");
     }
 
+    // Recorrido por niveles utilizando nuestra propia Cola.
     public void recorridoPorNiveles() {
         if (raiz == null) return;
 
-        Queue<NodoArbol> cola = new LinkedList<>();
-        cola.add(raiz);
+        Cola<NodoArbol> cola = new Cola<>();
+        cola.encolar(raiz);
 
-        while (!cola.isEmpty()) {
-            NodoArbol actual = cola.poll();
+        while (!cola.estaVacia()) {
+            NodoArbol actual = cola.desencolar();
 
             System.out.print(actual.getCodigo() + " ");
 
             if (actual.getIzquierdo() != null) {
-                cola.add(actual.getIzquierdo());
+                cola.encolar(actual.getIzquierdo());
             }
 
             if (actual.getDerecho() != null) {
-                cola.add(actual.getDerecho());
+                cola.encolar(actual.getDerecho());
             }
         }
 
@@ -162,8 +160,7 @@ public class ArbolBinarioBusqueda {
         return encontrarMinimo(actual.getIzquierdo());
     }
 
-    // MOSTRAR EL ARBOL CON RAMAS
-
+    // Mostrar el árbol con ramas.
     public void mostrarArbol() {
         if (raiz == null) {
             System.out.println("El arbol esta vacio.");
