@@ -1,3 +1,4 @@
+
 # Parcial II — Estructuras de Datos
 
 **Universidad del Quindío**  
@@ -105,9 +106,13 @@ La clase principal muestra la cola inicial, la evaluación de los paquetes y las
 
 ## Ejercicio 4 — Árbol binario de búsqueda (ABB)
 
-**Estructura propia:** `ArbolBinarioBusqueda`, apoyada en `NodoArbol`.
+**Estructura propia:** `ArbolBinarioBusqueda`, apoyada en `NodoArbol` y en la cola propia genérica `Cola<T>`.
 
 La implementación permite insertar códigos enteros sin duplicados, contar recursivamente los códigos dentro de un rango inclusivo, recorrer el árbol en inorden, preorden, postorden y por niveles, mostrar su estructura y eliminar nodos. El conteo por rango aprovecha el orden del ABB para descartar subárboles que no pueden contener códigos válidos.
+
+El recorrido por niveles utiliza la estructura `Cola<NodoArbol>` desarrollada en el proyecto, mediante sus operaciones `encolar`, `desencolar` y `estaVacia`. No se utilizan `java.util.Queue` ni `java.util.LinkedList`.
+
+El conteo se realiza mediante el método recursivo `contarEquiposEnRango(NodoArbol actual, int inferior, int superior)`, que recibe el nodo que se está evaluando y los límites inclusivos. También se dispone de un método público que inicia el conteo desde la raíz del árbol.
 
 **Datos insertados, en orden:**
 
@@ -128,8 +133,6 @@ Rango [12,50]: 10 equipos
 ```
 
 Al eliminar `41`, la implementación lo reemplaza por su **sucesor inorden, `43`**. Los dibujos del ABB original y del resultante de la eliminación deben incorporarse a mano en el documento de respuestas.
-
-**Nota de implementación:** el recorrido por niveles utiliza `java.util.Queue` y `java.util.LinkedList`; las demás operaciones del ABB se apoyan en nodos propios y recursividad. Conviene confirmar con el docente si también exige una cola propia para ese recorrido, debido a la condición general de utilizar estructuras propias.
 
 ## Ejercicio 5 — Árboles AVL y rojo-negro (solución manual)
 
